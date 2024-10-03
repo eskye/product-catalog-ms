@@ -1,6 +1,6 @@
 ﻿namespace Product.Infrastructure;
 
-public class Class1
+public class ServiceCollectionExtension
 {
 
 }
