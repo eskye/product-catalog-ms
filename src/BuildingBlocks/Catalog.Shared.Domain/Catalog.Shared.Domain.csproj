@@ -3,16 +3,13 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Entities\" />
+    <None Remove="Common\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\BuildingBlocks\Catalog.Shared.Domain\Catalog.Shared.Domain.csproj" />
+    <Folder Include="Common\" />
   </ItemGroup>
 </Project>

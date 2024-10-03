@@ -1,6 +1,13 @@
 version: '3.4'
 
 services:
+  postgres:
+    container_name: postgres
+    image: postgres:15-alpine
+
+  distributedcache:
+    image: redis
+
   inventory.api:
     image: ${DOCKER_REGISTRY-}inventory
     build:
@@ -13,33 +20,15 @@ services:
       context: .
       dockerfile: src/Services/Identity/Identity.Api/Dockerfile
 
-
   product.api:
     image: ${DOCKER_REGISTRY-}product
     build:
       context: .
       dockerfile: src/Services/Product/Product.Api/Dockerfile
 
-
   apigateway:
     image: ${DOCKER_REGISTRY-}apigateway
     build:
       context: .
       dockerfile: src/ApiGateway/Dockerfile
-
-  app_db:
-    image: postgres:latest
-    container_name: app_db
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=SampleDriverDb
-    ports:
-      - "5433:5432"
-    restart: always
-    volumes:
-      - app_data:/var/lib/postgresql/data
-    networks:
-      - dev
-volumes:
-  app_data:
+   

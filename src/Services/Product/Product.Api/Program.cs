@@ -1,6 +1,25 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Catalog.Shared;
+using Catalog.Shared.Middlewares;
+using Product.Api;
+using Product.Infrastructure;
+using Product.Application;
+using Serilog;
+
+var builder = WebApplication.CreateBuilder(args);
+
+var configuration = builder.Configuration;
+
+Log.Logger = new LoggerConfiguration()
+                   .MinimumLevel.Information()
+                   .WriteTo.Console()
+                   .CreateLogger();
 
 // Add services to the container.
+builder.Services.AddInfrastructureLayer(configuration)
+    .AddApplicationLayer()
+    .AddCurrentUserService()
+    .AddApiVersioningExtension()
+    .AddWebCoreServices("");
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,6 +38,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 
