@@ -1,13 +1,10 @@
-﻿using System;
-using Catalog.Shared.AppResponse;
+﻿using Catalog.Shared.AppResponse;
 using Microsoft.AspNetCore.Authorization;
-using System.Net;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Product.Api.Controllers
 {
-    [Authorize]
-    [ApiKey]
+    [Authorize] 
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class BaseApiController : ControllerBase
@@ -17,19 +14,7 @@ namespace Product.Api.Controllers
         protected CreatedResult Created(object value)
         {
             return base.Created("", value);
-        }
-
-        [NonAction]
-        protected ActionResult ApiResponse<T>(ApiResponse<T> response) where T : class
-        {
-            return response.StatusCode switch
-            {
-                HttpStatusCode.OK => base.Ok(response),
-                HttpStatusCode.BadRequest => base.BadRequest(response),
-                HttpStatusCode.NotFound => base.NotFound(response),
-                _ => throw new InvalidOperationException($"Unsupported Result Status {response.StatusCode}")
-            };
-        }
+        } 
 
         [NonAction]
         protected ActionResult ApiResponse<T>(Response<T> response) where T : class

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Catalog.Shared.Application
 {
-    public class CurrentUserService : ICurrentUser
+    public class CurrentUserService : ICurrentUserService
     {  
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {

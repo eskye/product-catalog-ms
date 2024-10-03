@@ -1,7 +1,6 @@
-﻿using System;
-namespace Product.Application.Requests
+﻿namespace Product.Application.Requests
 {
-	public class CreateProductRequest
+    public class CreateProductRequest
 	{ 
         public string Name { get; set; }
         public string Description { get; set; }

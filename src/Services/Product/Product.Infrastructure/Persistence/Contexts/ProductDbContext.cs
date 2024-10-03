@@ -24,7 +24,7 @@ namespace Product.Infrastructure.Persistence.Contexts
                     case EntityState.Added:
                         entry.Entity.DateCreated = DateTime.Now.ToLocalTime();
                         entry.Entity.CreatedBy = _currentUser.UserId != Guid.Empty ? _currentUser.UserId : entry.Entity.CreatedBy;
-                        entry.Entity.IsActive = true;
+                        entry.Entity.Active = true;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now.ToLocalTime();

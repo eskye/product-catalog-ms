@@ -2,5 +2,5 @@
 
 public interface IActiveStatusAudit
 {
-    bool IsActive { get; set; }
+    bool Active { get; set; }
 }
