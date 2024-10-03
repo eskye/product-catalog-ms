@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace Catalog.Shared.Application
 {
-    public class CurrentUser : ICurrentUser
+    public class CurrentUserService : ICurrentUser
     {  
-        public CurrentUser(IHttpContextAccessor httpContextAccessor)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
             _ = Guid.TryParse(httpContextAccessor.HttpContext?.User?.FindFirstValue("uid"), out var userId);
             UserId = userId;

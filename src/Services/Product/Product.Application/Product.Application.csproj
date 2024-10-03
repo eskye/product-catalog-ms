@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+    <PackageReference Include="FluentValidation" Version="11.10.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Validators\" />
+    <None Remove="Requests\" />
+    <None Remove="Responses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validators\" />
+    <Folder Include="Requests\" />
+    <Folder Include="Responses\" />
+  </ItemGroup>
 </Project>

@@ -69,7 +69,6 @@ namespace Catalog.Shared.Application
                     response = await _httpClient.SendAsync(requestBody);
                 }
             }
-
             return response;
         }
 

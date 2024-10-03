@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Catalog.Shared.Application;
 using Catalog.Shared.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using ProductEntity = Product.Domain.Entities.Product;
@@ -6,9 +7,12 @@ namespace Product.Infrastructure.Persistence.Contexts
 {
 	public class ProductDbContext : DbContext
 	{
-		public ProductDbContext(DbContextOptions<ProductDbContext> options): base(options)
+        private readonly ICurrentUserService _currentUser;
+
+        public ProductDbContext(DbContextOptions<ProductDbContext> options, ICurrentUserService currentUser): base(options)
 		{
-		}
+            _currentUser = currentUser;
+        }
 
         public DbSet<ProductEntity> Products { get; set; }
 
@@ -19,16 +23,12 @@ namespace Product.Infrastructure.Persistence.Contexts
                 {
                     case EntityState.Added:
                         entry.Entity.DateCreated = DateTime.Now.ToLocalTime();
-                        entry.Entity.CreatedBy = _authenticatedUser.UserId != Guid.Empty
-                            ? _authenticatedUser.UserId
-                            : entry.Entity.CreatedBy;
+                        entry.Entity.CreatedBy = _currentUser.UserId != Guid.Empty ? _currentUser.UserId : entry.Entity.CreatedBy;
                         entry.Entity.IsActive = true;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifiedDate = DateTime.Now.ToLocalTime();
-                        entry.Entity.LastModifiedBy = _authenticatedUser.UserId != Guid.Empty
-                            ? _authenticatedUser.UserId
-                            : entry.Entity.CreatedBy;
+                        entry.Entity.LastModifiedBy = _currentUser.UserId != Guid.Empty ? _currentUser.UserId : entry.Entity.CreatedBy;
                         break;
                 }
 

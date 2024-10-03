@@ -2,7 +2,7 @@
 
 namespace Catalog.Shared.Application
 {
-    public interface ICurrentUser
+    public interface ICurrentUserService
     {
         Guid UserId { get; set; }
     }

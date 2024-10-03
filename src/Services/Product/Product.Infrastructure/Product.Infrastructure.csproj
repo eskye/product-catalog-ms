@@ -28,5 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Product.Domain\Product.Domain.csproj" />
     <ProjectReference Include="..\..\..\BuildingBlocks\Catalog.Shared.Domain\Catalog.Shared.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Catalog.Shared\Catalog.Shared.csproj" />
   </ItemGroup>
 </Project>
