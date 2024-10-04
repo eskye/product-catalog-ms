@@ -35,20 +35,20 @@ services:
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
 
   postgres:
-     container_name: postgres
-     environment:
-          - POSTGRES_USER=postgres
-          - POSTGRES_PASSWORD=postgres 
-     restart: always
-     ports:
-        - "5433:5432" 
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      container_name: postgres
+      environment:
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres 
+      restart: always
+      ports:
+         - "5433:5432" 
+      volumes:
+         - postgres-data:/var/lib/postgresql/data
+      healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U postgres"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
 
   apigateway:
     environment:
@@ -60,3 +60,6 @@ services:
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+
+
+

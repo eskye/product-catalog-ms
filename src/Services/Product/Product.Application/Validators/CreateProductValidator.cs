@@ -3,7 +3,7 @@ using Product.Application.Requests;
 
 namespace Product.Application.Validators
 {
-    public class CreateProductValidator : AbstractValidator<CreateProductRequest>
+    public class CreateProductValidator : AbstractValidator<ProductRequest>
     {
 		public CreateProductValidator()
 		{

@@ -31,4 +31,6 @@ services:
     build:
       context: .
       dockerfile: src/ApiGateway/Dockerfile
-   
+
+volumes:
+  postgres-data:
