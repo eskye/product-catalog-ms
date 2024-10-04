@@ -7,7 +7,7 @@ namespace Catalog.Shared.Application
     {  
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            _ = Guid.TryParse(httpContextAccessor.HttpContext?.User?.FindFirstValue("uid"), out var userId);
+            _ = Guid.TryParse(httpContextAccessor.HttpContext?.User?.FindFirstValue("sub"), out var userId);
             UserId = userId;
         }
 

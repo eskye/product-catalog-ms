@@ -20,18 +20,26 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+    <PackageReference Include="Polly" Version="8.4.2" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Persistence\" />
     <None Remove="Services\" />
     <None Remove="Persistence\Configurations\" />
+    <None Remove="DbSeeders\" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Persistence\" />
     <Folder Include="Services\" />
     <Folder Include="Persistence\Configurations\" />
+    <Folder Include="DbSeeders\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\..\BuildingBlocks\Catalog.Shared\Catalog.Shared.csproj" />
+    <ProjectReference Include="..\Identity.Application\Identity.Application.csproj" />
   </ItemGroup>
 </Project>

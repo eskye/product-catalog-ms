@@ -37,6 +37,11 @@ namespace Catalog.Shared.Middlewares
                         responseModel = new ApiErrorResponse(exception.Error, exception.Message);
                         _logger.LogError(exception, exception!.Error);
                         break;
+                    case IdentityErrorException exception:
+                        response.StatusCode = StatusCodes.Status400BadRequest;
+                        responseModel = new ApiErrorResponse(exception.Error, exception.Message);
+                        _logger.LogError(exception, exception!.Error);
+                        break;
                     case UnauthorizedAccessException exception:
                         response.StatusCode = StatusCodes.Status401Unauthorized;
                         responseModel = new ApiErrorResponse(exception.Message, HttpStatusCode.Unauthorized);

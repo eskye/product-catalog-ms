@@ -29,9 +29,13 @@ public static class ServiceCollectionExtension
                     b => b.MigrationsAssembly(typeof(ProductDbContext).Assembly.FullName))
                 .EnableSensitiveDataLogging(false);
         });
-        using var scope = services.BuildServiceProvider().CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
-        dbContext.Database.Migrate();
+        if (config.GetValue<bool>("AutoMigrate"))
+        {
+            using var scope = services.BuildServiceProvider().CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<ProductDbContext>();
+            dbContext.Database.Migrate();
+           
+        }
         return services;
     }
 

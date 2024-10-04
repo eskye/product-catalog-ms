@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
 {
-    //[Authorize] 
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class BaseApiController : ControllerBase
