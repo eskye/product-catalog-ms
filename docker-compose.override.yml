@@ -4,35 +4,34 @@ services:
   inventory.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "80"
-      - "443"
-    volumes:
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
 
   identity.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__IdentityDbConnection=User ID=postgres;Password=postgres;Server=postgres;Port=5432;Database=cIdentityDb;Pooling=true
+      - AutoMigrate=True
+      - JwtSettings__SecretKey=b97f>MNK%QZmFf8q5tR6GcA)8kuC.X;FMkqr5(HAmbky.aRR$V3
+      - JwtSettings__RefreshSecret=w(N.3*r;(AUKZvS9BwBS$FGR-B>7T$ff<yz2SN Ve3RMjR%
+      - JwtSettings__Issuer=CatalogIdentityMS
+      - JwtSettings__ExpireTime=60
+      - JwtSettings__RefreshTokenExpirationMin=120
+      - JwtSettings__Audience=CatalogIdentityUser
+      
     ports:
       - "80"
-      - "443"
-    volumes:
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
 
   product.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__ProductDbConnection=User ID=postgres;Password=postgres;Server=postgres;Port=5432;Database=cproductDb;Pooling=true
+      - AutoMigrate=True
     ports:
       - "80"
-      - "443"
-    volumes:
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
 
   postgres:
       container_name: postgres
@@ -53,13 +52,9 @@ services:
   apigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_URLS=http://+:80
     ports:
-      - "80"
-      - "443"
-    volumes:
-      - ~/.aspnet/https:/root/.aspnet/https:ro
-      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
+      - "8080:80"
 
 
 

@@ -2,47 +2,37 @@
   "Routes": [
     {
       "SwaggerKey": "productapi",
-      "UpstreamPathTemplate": "/api/{version}/products",
-      "UpstreamHttpMethod": [
-        "GET"
-      ],
-      "DownstreamPathTemplate": "/api/{version}/products",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 7087
-        }
-      ]
-    },
-    {
-      "SwaggerKey": "aggregator",
-      "UpstreamPathTemplate": "/api/{version}/customers/{id}/baskets",
+      "UpstreamPathTemplate": "/api/{version}/products/{everything}",
       "UpstreamHttpMethod": [
         "GET",
-        "POST"
+        "POST",
+        "PUT",
+        "DELETE"
       ],
-      "DownstreamPathTemplate": "/api/{version}/customers/{id}/baskets",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/{version}/products/{everything}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7067
+          "Host": "product.api",
+          "Port": 80
         }
       ]
     },
     {
-      "SwaggerKey": "basketapi",
-      "UpstreamPathTemplate": "/api/{version}/customers/{id}/baskets/{productId}",
+      "SwaggerKey": "identityapi",
+      "UpstreamPathTemplate": "/api/{version}/auth/{everything}",
       "UpstreamHttpMethod": [
+        "GET",
+        "POST",
+        "PUT",
         "DELETE"
       ],
-      "DownstreamPathTemplate": "/api/{version}/customers/{id}/baskets/{productId}",
-      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/{version}/auth/{everything}",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7298
+          "Host": "identity.api",
+          "Port": 80
         }
       ]
     }
@@ -58,27 +48,17 @@
         {
           "Name": "Product API",
           "Version": "v1",
-          "Url": "https://localhost:7087/swagger/v1/swagger.json"
+          "Url": "http://product.api/swagger/v1/swagger.json"
         }
       ]
     },
     {
-      "Key": "aggregator",
+      "Key": "identityapi",
       "Config": [
         {
-          "Name": "Aggregator",
+          "Name": "Identity API",
           "Version": "v1",
-          "Url": "https://localhost:7067/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "basketapi",
-      "Config": [
-        {
-          "Name": "Basket API",
-          "Version": "v1",
-          "Url": "https://localhost:7298/swagger/v1/swagger.json"
+          "Url": "http://identity.api/swagger/v1/swagger.json"
         }
       ]
     }
