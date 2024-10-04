@@ -19,9 +19,8 @@ builder.Services.AddApplicationLayer()
     .AddCurrentUserService()
     .AddInfrastructureLayer(configuration)
     .AddApiVersioningExtension()
-    .AddWebCoreServices("");
-
-builder.Services.AddControllers();
+    .AddWebCoreServices(string.Empty);
+ 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -38,9 +37,8 @@ app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-
+app.UseAuthorization(); 
+app.UseAuthentication(); 
 
 app.MapControllers();
 
