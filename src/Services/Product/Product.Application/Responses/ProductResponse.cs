@@ -1,16 +1,13 @@
-﻿namespace Product.Application.Requests
+﻿using System;
+namespace Product.Application.Responses
 {
-    public class ProductRequest
-	{ 
+    public class ProductResponse
+	{
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public string Unit { get; set; }
-    }
-
-    public class UpdateProductRequest : ProductRequest
-    {
-        public int Id { get; set; }
     }
 }
 

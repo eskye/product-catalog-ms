@@ -15,9 +15,9 @@ Log.Logger = new LoggerConfiguration()
                    .CreateLogger();
 
 // Add services to the container.
-builder.Services.AddInfrastructureLayer(configuration)
-    .AddApplicationLayer()
+builder.Services.AddApplicationLayer()
     .AddCurrentUserService()
+    .AddInfrastructureLayer(configuration)
     .AddApiVersioningExtension()
     .AddWebCoreServices("");
 
@@ -34,12 +34,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseMiddleware<ErrorHandlerMiddleware>();
+
 
 app.MapControllers();
 

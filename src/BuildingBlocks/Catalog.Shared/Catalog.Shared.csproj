@@ -13,6 +13,7 @@
     <None Remove="Middlewares\" />
     <None Remove="Application\" />
     <None Remove="Extensions\" />
+    <None Remove="Core\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Exceptions\" />
@@ -21,6 +22,8 @@
     <Folder Include="Middlewares\" />
     <Folder Include="Application\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Core\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.10.0" />
@@ -28,5 +31,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.8" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="8.1.5" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,7 @@
 ﻿using Catalog.Shared.AppResponse;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Product.Api.Controllers
+namespace Identity.Api.Controllers
 {
     //[Authorize] 
     [ApiController]
@@ -14,7 +13,7 @@ namespace Product.Api.Controllers
         protected CreatedResult Created(object value)
         {
             return base.Created("", value);
-        } 
+        }
 
         [NonAction]
         protected ActionResult ApiResponse<T>(Response<T> response) where T : class
