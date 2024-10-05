@@ -1,7 +1,6 @@
 ﻿using Catalog.Shared.Middlewares;
 using Identity.Api.Extensions;
 using Identity.Infrastructure;
-using Microsoft.Extensions.Configuration;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +11,7 @@ Log.Logger = new LoggerConfiguration()
                    .WriteTo.Console()
                    .CreateLogger();
 
+builder.Configuration.AddEnvironmentVariables();
 // Add services to the container.
 builder.Services.AddIdentityInfrastructure(builder.Configuration)
     .AddApiVersioningExtension()

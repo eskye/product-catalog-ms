@@ -5,8 +5,8 @@ services:
     container_name: postgres
     image: postgres:15-alpine
 
-  distributedcache:
-    image: redis
+ # distributedcache:
+   # image: redis
 
   inventory.api:
     image: ${DOCKER_REGISTRY-}inventory
@@ -19,12 +19,16 @@ services:
     build:
       context: .
       dockerfile: src/Services/Identity/Identity.Api/Dockerfile
+    depends_on:
+      - postgres
 
   product.api:
     image: ${DOCKER_REGISTRY-}product
     build:
       context: .
       dockerfile: src/Services/Product/Product.Api/Dockerfile
+    depends_on:
+      - postgres
 
   apigateway:
     image: ${DOCKER_REGISTRY-}apigateway
