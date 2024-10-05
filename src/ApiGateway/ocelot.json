@@ -16,7 +16,11 @@
           "Host": "product.api",
           "Port": 80
         }
-      ]
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
     },
     {
       "SwaggerKey": "identityapi",

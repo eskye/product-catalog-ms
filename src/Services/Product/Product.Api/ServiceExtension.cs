@@ -1,4 +1,5 @@
 ﻿using Catalog.Shared.Filters;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Product.Api
@@ -23,13 +24,15 @@ namespace Product.Api
             });
         }
 
+        
         internal static void AddWebCoreServices(this IServiceCollection services, string allowedSpecificOrigins)
         {
             services.AddSingleton<ModelStateValidationFilter>();
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.Configure<MvcOptions>(options => options.Filters.AddService<ModelStateValidationFilter>());
 
-            services.AddControllers(); 
+            services.AddFluentValidationAutoValidation();
+            services.AddControllers();
             services.AddRouting(options => options.LowercaseUrls = true)
             .AddCors(options =>
             {
@@ -40,7 +43,7 @@ namespace Product.Api
                         .AllowCredentials()
                         .AllowAnyHeader();
                 });
-            });
+            }); 
         }
     }
 }

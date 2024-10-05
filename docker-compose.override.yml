@@ -30,6 +30,12 @@ services:
       - ASPNETCORE_URLS=http://+:80
       - ConnectionStrings__ProductDbConnection=User ID=postgres;Password=postgres;Server=postgres;Port=5432;Database=cproductDb;Pooling=true
       - AutoMigrate=True
+      - JwtSettings__SecretKey=b97f>MNK%QZmFf8q5tR6GcA)8kuC.X;FMkqr5(HAmbky.aRR$V3
+      - JwtSettings__RefreshSecret=w(N.3*r;(AUKZvS9BwBS$FGR-B>7T$ff<yz2SN Ve3RMjR%
+      - JwtSettings__Issuer=CatalogIdentityMS
+      - JwtSettings__ExpireTime=60
+      - JwtSettings__RefreshTokenExpirationMin=120
+      - JwtSettings__Audience=CatalogIdentityUser
     ports:
       - "80"
 
@@ -53,6 +59,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+      - JwtSettings__SecretKey=b97f>MNK%QZmFf8q5tR6GcA)8kuC.X;FMkqr5(HAmbky.aRR$V3
+      - JwtSettings__RefreshSecret=w(N.3*r;(AUKZvS9BwBS$FGR-B>7T$ff<yz2SN Ve3RMjR%
+      - JwtSettings__Issuer=CatalogIdentityMS
+      - JwtSettings__ExpireTime=60
+      - JwtSettings__RefreshTokenExpirationMin=120
+      - JwtSettings__Audience=CatalogIdentityUser
     ports:
       - "8080:80"
 
