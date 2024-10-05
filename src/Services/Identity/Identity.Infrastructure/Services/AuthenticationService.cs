@@ -41,7 +41,7 @@ namespace Identity.Infrastructure.Services.Interfaces
 
         public async Task<Response<AuthenticateResponse>> RefreshTokenAsync(RefreshTokenRequest request)
         {
-            var userPrincipal = await _tokenService.GetPrincipalFromExpiredToken(request.AccessToken);
+            var userPrincipal = await _tokenService.GetPrincipalFromExpiredToken(request.RefreshToken);
             var email = userPrincipal.Identity!.Name;
             var sessionId = userPrincipal.Claims.FirstOrDefault(x => x.Type == JwtClaimTypes.RefreshTokenId)?.Value; 
             var user = await _userManager.FindByEmailAsync(email) ?? throw new IdentityErrorException(CustomMessages.RefreshToken_Error);
